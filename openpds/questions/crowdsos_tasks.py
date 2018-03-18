@@ -1,7 +1,7 @@
 from celery import task
 from openpds.core.models import Profile, Notification, Device
 from bson import ObjectId
-from pymongo import Connection
+from pymongo import MongoClient
 from django.conf import settings
 import time
 from datetime import date, timedelta, datetime
@@ -13,7 +13,7 @@ from gcm import GCM
 
 from openpds.core.models import Profile
 
-connection = Connection(
+connection = MongoClient(
     host=getattr(settings, "MONGODB_HOST", None),
     port=getattr(settings, "MONGODB_PORT", None)
 )

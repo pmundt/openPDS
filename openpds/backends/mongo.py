@@ -1,10 +1,10 @@
-from pymongo import Connection
+from pymongo import MongoClient
 from openpds.core.models import Profile
 from openpds.backends.base import InternalDataStore
 from openpds import settings
 import pdb
 
-connection = Connection(
+connection = MongoClient(
     host=getattr(settings, "MONGODB_HOST", None),
     port=getattr(settings, "MONGODB_PORT", None)
 )

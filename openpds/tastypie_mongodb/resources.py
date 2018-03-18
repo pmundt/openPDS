@@ -1,5 +1,5 @@
 from bson import ObjectId
-from pymongo import Connection, ASCENDING, DESCENDING
+from pymongo import MongoClient, ASCENDING, DESCENDING
 
 from django.core.exceptions import ImproperlyConfigured
 from django.core.urlresolvers import reverse
@@ -11,7 +11,7 @@ import pdb
 
 from openpds.core.models import Profile
 
-db = Connection(
+db = MongoClient(
     host=getattr(settings, "MONGODB_HOST", None),
     port=getattr(settings, "MONGODB_PORT", None)
 )

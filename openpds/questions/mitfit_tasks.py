@@ -2,7 +2,7 @@ from __future__ import division
 from celery import task
 from openpds.core.models import Profile, Notification, Device
 from bson import ObjectId
-from pymongo import Connection
+from pymongo import MongoClient
 from django.conf import settings
 import time
 from datetime import date, timedelta
