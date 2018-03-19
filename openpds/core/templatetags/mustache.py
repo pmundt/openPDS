@@ -1,15 +1,19 @@
 from django import template
 from django.conf import settings
 import pystache
+import os
 
 register = template.Library()
 
-class View(pystache.View):
-    template_path = settings.TEMPLATE_DIRS[0]
+class View(pystache.TemplateSpec):
+    template_path = os.path.join(os.path.dirname(__file__), 'templates')
+    renderer = pystache.Renderer(search_dirs = template_path)
 
     def __init__(self, template_name, context):
         self.template_name = template_name
-        return super(View, self).__init__(context=context)
+
+    def render(self):
+	return self.renderer.render(self)
 
 class MustacheNode(template.Node):
     def __init__(self, template_path, attr=None):
