@@ -3,7 +3,6 @@ from django.template import RequestContext
 from django.shortcuts import render_to_response
 from django import forms
 import datetime
-from django.utils import simplejson as json_simple
 import os
 import sqlite3
 import json, ast

@@ -2,7 +2,6 @@
 from django.shortcuts import render_to_response
 import datetime
 from django.http import HttpResponse, HttpResponseBadRequest
-from django.utils import simplejson as json_simple
 import dbmerge, os
 import dbdecrypt
 import decrypt
