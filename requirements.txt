@@ -12,4 +12,4 @@ python-gcm
 SparqlWrapper
 django-4store
 pycrypto
-
+pystache
