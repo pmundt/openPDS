@@ -1,11 +1,10 @@
 #-*- coding: utf-8 -*-
-from django.conf.urls.defaults import patterns, include, url
+from django.conf.urls import include, url
+from openpds.connectors.opensense import views
 
-urlpatterns = patterns('openpds.connectors.opensense.views',
-    (r'^upload$',                 'data'),
-    (r'^register$',				'register'),
-    (r'^test',				'test'),
-    #(r'^config$',				'config'),
-
-)
-
+urlpatterns = [
+    url(r'^upload$',            views.data),
+    url(r'^register$',		views.register),
+    url(r'^test',		views.test),
+    #url(r'^config$',		views.config),
+]

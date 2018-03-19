@@ -1,34 +1,34 @@
-from django.conf.urls import patterns, include, url
+from django.conf.urls import include, url
 from django.conf import settings
-from django.conf.urls.defaults import *
-from django.views.generic.simple import direct_to_template
 from django.contrib import admin
 from openpds.core.tools import v1_api
+from django.views.generic import TemplateView
 from django.views.generic.base import RedirectView
+from openpds import views
 
 admin.autodiscover()
 
-urlpatterns = patterns('openpds.views',
-    (r'^$', RedirectView.as_view(url='https://github.com/HumanDynamics/openPDS/wiki')),
-    (r'^home/', 'home'),
-    (r'^discovery/ping/', 'ping'),
-    (r'^api/', include(v1_api.urls)),
-    (r'^admin/audit', direct_to_template, { 'template' : 'audit.html' }),
+urlpatterns = [
+    url(r'^$', RedirectView.as_view(url='https://github.com/HumanDynamics/openPDS/wiki')),
+    url(r'^home/', views.home),
+    url(r'^discovery/ping/', views.ping),
+    url(r'^api/', include(v1_api.urls)),
+    url(r'^admin/audit', TemplateView.as_view(template_name='audit.html')),
     #(r'^documentation/', include('tastytools.urls'), {'api_name': v1_api.api_name}),
-    (r'^admin/roles', direct_to_template, { 'template' : 'roles.html' }),
-    (r'^admin/', include(admin.site.urls)),
-    (r'visualization/', include('openpds.visualization.urls')),
-    (r'^funf_connector/', include('openpds.connectors.funf.urls')),
-    #(r'^funf_connector/', include('openpds.connectors.opensense.urls')),
-    (r'^os_connector/', include('openpds.connectors.opensense.urls')),
-    (r'^survey/', direct_to_template, { 'template' : 'survey.html' }),
-    (r"meetup/", include("openpds.meetup.urls")),
+    url(r'^admin/roles', TemplateView.as_view(template_name='roles.html')),
+    url(r'^admin/', include(admin.site.urls)),
+    url(r'visualization/', include('openpds.visualization.urls')),
+    url(r'^funf_connector/', include('openpds.connectors.funf.urls')),
+    #url(r'^funf_connector/', include('openpds.connectors.opensense.urls')),
+    url(r'^os_connector/', include('openpds.connectors.opensense.urls')),
+    url(r'^survey/', TemplateView.as_view(template_name='survey.html')),
+    url(r"meetup/", include("openpds.meetup.urls")),
     # Uncomment the admin/doc line below to enable admin documentation:
     # url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
 
     # Uncomment the next line to enable the admin:
     # url(r'^admin/', include(admin.site.urls)),
-    (r"accesscontrol/", include("openpds.accesscontrol.urls")),
-    (r'probevisualization/', direct_to_template, { 'template' : 'probevisualization.html' }),
-    (r'^checkboxes/', direct_to_template, { 'template' : 'multiplecheckboxes.html' }),
-)
+    url(r"accesscontrol/", include("openpds.accesscontrol.urls")),
+    url(r'probevisualization/', TemplateView.as_view(template_name='probevisualization.html')),
+    url(r'^checkboxes/', TemplateView.as_view(template_name='multiplecheckboxes.html')),
+]
